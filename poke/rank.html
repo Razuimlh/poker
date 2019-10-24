@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>排行</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		/*@import "css.css"或者url(css.css);*/
+		/**{
+			border: 0;
+			margin: 0;
+		}*/
+		/*div{
+			width: 960px;
+			height: 700px;
+			background-image: url(frame.png);
+			background-repeat: no-repeat;
+			background-color: #A6DDF2;
+			border: 1px grey solid;
+		}*/
+		.head{
+			height: 50px;
+			background: #84C5D9;
+			float: top;
+			border: 1px grey solid;
+		}
+		ol li{
+			list-style-type: decimal;
+			list-style-position: inside;
+		}
+		<!--
+		h1{
+			color: #6099BA;
+			font-size:60px; 
+			font-family:"";
+			}/*可用逗号分隔批量改字体*/
+		-->/*style只能放在<head>里。注释是为了低版本浏览器识别不了style标签时把这行注释掉*/
+		.tit{
+			color: red;
+			//*在点前可以选择p或h1来进行专门选择*/
+		}
+		#font
+		{
+			font-size: 30px; 
+		}
+		/*全局选择器
+		*{}是优先于默认的设置
+		*/
+		.poke{
+			position: absolute;
+			left: 90%;
+			top: -12px;
+		}
+		.frame{
+			position: absolute;
+			left: 21%;
+			top: 20%;
+		}
+		.tab{
+			position: absolute;
+			left: 43%;
+			top: 40%;
+		}
+		.bell{
+			position: absolute;
+			left: 85%;
+			top: 10%;
+		}
+		.bell a:hover img{
+				opacity:0.8;
+				filter: alpha(opacity=80);
+		}
+	</style>
+</head>
+<body bgcolor="E4E4E4">
+	<div class="head"></div>
+
+	<h1 align="center">排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;行</h1>
+	<div class="bell">
+		<a href="fight.html">
+			<img src="bell.png" width="200px" height="300px"/>
+		</a>
+	</div>
+	<div class="poke">
+		<img src="poke.png" width="150px" height="150px">
+	</div>
+	<div class="frame">
+		<img src="frame.png" width="1100px" height="750px" />
+	</div>
+	
+	<!--<img src="https://i.loli.net/2019/10/13/VcRQlWS3iZ6zbDm.png"   alt=""/>alt是用来无法查看时代替显示的文字-->
+	<!--<ul>
+		无序列表<li></li>，用type属性换点点样式：disc;square;circle
+	</ul>-->
+	<div class="tab">
+		<form>
+		<table width="600px" bgcolor="FFFFFF" align="center">
+			<h1 class="tit" id="font">名次&nbsp;&nbsp;&nbsp;&nbsp;用户名&nbsp;&nbsp;&nbsp;分数</h1>
+			<ol>
+				<li>hhhh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2300</li>
+
+				<li>rob&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;700</li>
+			
+				<li>tyu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-200</li>
+			</ol>
+		</table>
+		</form>
+	</div>
+		
+</body>
+</html>

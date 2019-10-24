@@ -1,0 +1,116 @@
+<!DOCTYPE html><!--用于申明类型，不是标签-->
+<html>
+<head>
+	<title>初始界面</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/><!--前者是文档类型，content代表内容是HTML文件，编码形式是utf-8-->
+	<style type="text/css">
+		a:link{color: black}
+		a:visited{color: black}
+		a:hover{color: grey}
+		a:active{color: grey}
+		a{
+		text-decoration: none;
+		}
+		a:hover{
+		text-decoration: underline;
+		}
+		.log{
+			position: absolute;
+			left: 82%;
+			top: 0;
+		}
+		.logo{
+			position: absolute;
+			left: 41%;
+			top: 13%;
+			z-index: 1;
+		}
+		.start{
+			position: absolute;
+			left: 20%;
+			top: 23%;
+		}
+		.now{
+			position: absolute;
+			left: 20%;
+			top: 33%;
+		}
+		.before{
+			position: absolute;
+			left: 20%;
+			top: 43%;
+		}
+		.detail{
+			position: absolute;
+			left: 20%;
+			top: 53%;
+		}
+		.rank{
+			position: absolute;
+			left: 20%;
+			top: 63%;
+		}
+		.end{
+			position: absolute;
+			left: 20%;
+			top: 73%;
+		}
+		.flower{
+			position: absolute;
+			left: 9px;
+			top: 60px;
+			z-index: -1;
+		}
+		.alice{
+			position: absolute;
+			left: 44%;
+			top: 37%;
+		}
+	</style>
+	<link href="css.css" rel="stylesheet" type="text/css"/>
+</head>
+<body bgcolor="white">
+
+	<div class="head"></div>
+
+	<div class="poke">
+		<img src="poke.png" width="150px" height="150px">
+	</div>
+
+	<div>
+		<p align="right" class="log"><a href="login.html"><b><font size="5">登录/注册</a></font></b></p>
+	</div>
+
+	<div>
+		<img src="logo.png" width="680px" height="390px" class="logo" />
+		<a href="login.html">
+			<img src="begin.png" width="302px" height="100px" class="start" />
+		</a>
+
+		<a href="fight.html" target="_self">
+			<img src="now.png" width="302px" height="100px" class="now" />
+		</a><!--target中的_bank则是打开新的窗口。title是链接时的提示-->
+
+		<a href="before.html">
+			<img src="before.png" width="302px" height="100px" class="before" />
+		</a>
+
+		<a href="detail.html">
+			<img src="detail.png" width="302px" height="100px" class="detail" />
+		</a>
+		
+		<a href="rank.html">
+			<img src= "rank.png" width="302px" height="100px" class="rank" />
+		</a>
+		
+		<img src="flower.png"/ width=35% height=85% class="flower"/>
+		<img src="alice.jpg" width="600px" height="600px" class="alice"/>
+	</div>
+	<!--<hr>或者<hr/>是水平线。
+	 <br/>标签代表换行，但还是一个段落里的。
+	&nbsp;代表空格。
+	在<pre><pre/>里输入什么就显示什么。
+	-->
+	
+</body>
+</html>

@@ -1,0 +1,41 @@
+.head{
+			height: 50px;
+			/*background: #A6DDF2;*/
+			background: #84C5D9;
+			float: top;
+			border: 1px grey solid;
+		}
+		.poke{
+			position: absolute;
+			left: 90%;
+			top: -12px;
+		}
+		.frame{
+			position: absolute;
+			left: 21%;
+			top: 20%;
+			z-index: -1;
+		}
+		.tab{
+			position: absolute;
+			left: 43%;
+			top: 40%;
+		}
+		.bell{
+			position: absolute;
+			left: 85%;
+			top: 10%;
+		}
+		.bell a:hover img{
+				opacity:0.8;
+				filter: alpha(opacity=80);
+		}
+h1{
+	color: #6099BA;
+	font-size:60px; 
+	font-family:"",sans-serif;
+	}
+/*
+<link href="css.css" rel="stylesheet" type="text/css"/>
+放在要引入此格式的<head>里 
+*/
