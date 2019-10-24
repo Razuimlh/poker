@@ -3,8 +3,6 @@
 
 ![](https://img.shields.io/badge/CSDN-Razuimlh-orange)
 ![](https://img.shields.io/badge/language-python-green)
-![](https://img.shields.io/badge/code%20quality-A-blue)
-![](https://img.shields.io/badge/build-passing-yellowgreen)
 
 运行环境
 =======
