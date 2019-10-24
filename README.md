@@ -1,7 +1,9 @@
 徽章
 ====
+
 ![](https://img.shields.io/badge/CSDN-Razuimlh-orange)
 ![](https://img.shields.io/badge/language-python-green)
+![](https://img.shields.io/badge/code%20quality-A-blue)
 
 运行环境
 =======
