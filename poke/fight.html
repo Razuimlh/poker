@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>当前对战状态</title>
+	<link rel="stylesheet" type="text/css" href="css.css">
+	<meta charset="utf-8">
+	<style type="text/css">
+		.before{
+			position: absolute;
+			left: 10%;
+			top: 43%;
+		}
+		.detail{
+			position: absolute;
+			left: 10%;
+			top: 53%;
+		}
+		.rank{
+			position: absolute;
+			left: 10%;
+			top: 63%;
+		}
+		.flower{
+			position: absolute;
+			left: 9px;
+			top: 60px;
+			z-index: -1;
+		}
+		.q{
+			position: absolute;
+			left: 70%;
+			top: 30%;
+		}
+		.z{
+			position: absolute;
+			left: 70%;
+			top: 50%;
+		}
+		.h{
+			position: absolute;
+			left: 70%;
+			top: 70%;
+		}
+		.chu{
+			position: absolute;
+			left: 80%;
+			top: 85%;
+		}
+		.A{
+			position: absolute;
+			left: 30%;
+			top: 30%;
+		}
+	</style>
+</head>
+<body bgcolor="E4E4E4">
+	<div class="head"></div>
+	<h1 align="center"><font color="6099BA">当前对战状态</font></h1>
+
+	<div class="bell">
+		<a href="begin.html">
+			<img src="bell.png" width="200px" height="300px"/>
+		</a>
+	</div>
+	<div class="poke">
+		<img src="poke.png" width="150px" height="150px">
+	</div>
+
+	<div class="q">
+		<img src="q.png">
+	</div>
+	<div class="z">
+		<img src="z.png">
+	</div>
+	<div class="h">
+		<img src="h.png">
+	</div>
+	<div class="chu">
+		<a href="now.html">
+		<img src="chupai.png">
+	</a>
+	</div>
+
+	<!-- <div class="A">
+		<img src="mA.png" width="110px" height="150px">
+	</div> -->
+	<div>
+		
+	</div>
+
+	<div>
+		<a href="before.html">
+			<img src="before.png" width="302px" height="100px" class="before" />
+		</a>
+
+		<a href="detail.html">
+			<img src="detail.png" width="302px" height="100px" class="detail" />
+		</a>
+		
+		<a href="rank.html">
+			<img src= "rank.png" width="302px" height="100px" class="rank" />
+		</a>
+		
+		<img src="flower.png" width=35% height=85% class="flower"/>
+	</div>
+<script type="text/javascript">
+	function SignIn(IdName){
+      if(IdName == "u39")
+      {
+        window.location.href='result.html';
+      }
+      if(IdName == "u39u")
+      {
+        window.location.href='player.html';
+      }
+      if(IdName == "u40")
+      {
+        window.location.href='sort.html';
+      }
+      if(IdName == "u41")
+      {
+        window.location.href='menu.html';
+      }
+    }
+    var card;
+    var id=document.getElementById("idNumber");
+
+    document.getElementById("start").onclick=function(){
+        var data = null;
+        var xhr = new XMLHttpRequest();
+        //xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+        console.log(this.responseText);
+        var JsonObj = JSON.parse(this.responseText);
+        if(JsonObj.status==1004) alert("Token过期");
+        if(JsonObj.status==2001) alert("未结束战局过多");
+        if(JsonObj.status==0)
+        {
+          id.innerHTML=JsonObj.data.id;
+          card=JsonObj.data.card;
+          showStart(card);
+        }  
+        }
+        });
+
+        xhr.open("POST", "https://api.shisanshui.rtxux.xyz/game/open");
+        var token = document.cookie.split(";")[0];
+        xhr.setRequestHeader("x-auth-token",token);
+
+        xhr.send(data);
+    }
+
+    document.getElementById("action").onclick=function(){
+      var data = JSON.stringify({
+        "id":id.innerHTML,
+        "card": card
+        });
+        var xhr = new XMLHttpRequest();
+        //xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+        console.log(this.responseText);
+        var JsonObj = JSON.parse(this.responseText);
+        showAction(JsonObj.card);
+        submit(JsonObj.card);
+        }
+        });
+        xhr.open("POST", "");
+        xhr.setRequestHeader("content-type", "application/json");
+
+        xhr.send(data);
+    }
+      function submit(carded){
+        var data = JSON.stringify({
+        "id": id.innerHTML,
+        "card": carded
+        });
+        var xhr = new XMLHttpRequest();
+        //xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+        console.log(this.responseText);
+        var JsonObj = JSON.parse(this.responseText);
+        if(JsonObj.status==1004) alert("Token过期");
+        if(JsonObj.status==2002) alert("出千！！！");
+        if(JsonObj.status==2003) alert("不合法墩牌");
+        if(JsonObj.status==0) alert(JsonObj.data.msg); 
+        }
+        });
+
+        xhr.open("POST", "https://api.shisanshui.rtxux.xyz/game/submit");
+        var token = document.cookie.split(";")[0];
+        xhr.setRequestHeader("x-auth-token",token);
+        xhr.setRequestHeader("content-type", "application/json");
+
+        xhr.send(data);
+    }
+
+    function showStart(Card){
+      var cardSplit = Card.split(" ");
+      for(var i=0;i<13;i++)
+      {
+        var s=document.getElementById("card"+String(i+1));
+        match(s,cardSplit[i]);
+      }
+    }
+
+    function showAction(as){
+      for(var i=0;i<3;i++)
+      {
+        var cardSplit = as[i].split(" ");
+        if(i==0)
+        {
+          for(var j=0;j<3;j++)
+          {
+            var s=document.getElementById("before"+String(j+1)+"img");
+            match(s,cardSplit[j]);
+          }
+        }
+        else if(i==1)
+        {
+          for(var j=0;j<5;j++)
+          {
+            var s=document.getElementById("middle"+String(j+1)+"img");
+            match(s,cardSplit[j]);
+          }
+        }
+        else
+        {
+          for(var j=0;j<5;j++)
+          {
+            var s=document.getElementById("after"+String(j+1)+"img");
+            match(s,cardSplit[j]);
+          }
+        }
+      }
+    }
+
+    function match(p,cardSplit){
+      switch(cardSplit){
+          case "#2":p.src="./puke/-2.png";break;
+          case "#3":p.src="./puke/-3.png";break;
+          case "#4":p.src="./puke/-4.png";break;
+          case "#5":p.src="./puke/-5.png";break;
+          case "#6":p.src="./puke/-6.png";break;
+          case "#7":p.src="./puke/-7.png";break;
+          case "#8":p.src="./puke/-8.png";break;
+          case "#9":p.src="./puke/-9.png";break;
+          case "#10":p.src="./puke/-10.png";break;
+          case "#J":p.src="./puke/-j.png";break;
+          case "#Q":p.src="./puke/-q.png";break;
+          case "#K":p.src="./puke/-k.png";break;
+          case "#A":p.src="./puke/-1.png";break;
+          case "&2":p.src="./puke/&2.png";break;
+          case "&3":p.src="./puke/&3.png";break;
+          case "&4":p.src="./puke/&4.png";break;
+          case "&5":p.src="./puke/&5.png";break;
+          case "&6":p.src="./puke/&6.png";break;
+          case "&7":p.src="./puke/&7.png";break;
+          case "&8":p.src="./puke/&8.png";break;
+          case "&9":p.src="./puke/&9.png";break;
+          case "&10":p.src="./puke/&10.png";break;
+          case "&J":p.src="./puke/&j.png";break;
+          case "&Q":p.src="./puke/&q.png";break;
+          case "&K":p.src="./puke/&k.png";break;
+          case "&A":p.src="./puke/&1.png";break;
+          case "$2":p.src="./puke/$2.png";break;
+          case "$3":p.src="./puke/$3.png";break;
+          case "$4":p.src="./puke/$4.png";break;
+          case "$5":p.src="./puke/$5.png";break;
+          case "$6":p.src="./puke/$6.png";break;
+          case "$7":p.src="./puke/$7.png";break;
+          case "$8":p.src="./puke/$8.png";break;
+          case "$9":p.src="./puke/$9.png";break;
+          case "$10":p.src="./puke/$10.png";break;
+          case "$J":p.src="./puke/$j.png";break;
+          case "$Q":p.src="./puke/$q.png";break;
+          case "$K":p.src="./puke/$k.png";break;
+          case "$A":p.src="./puke/$1.png";break;
+          case "*2":p.src="./puke/+2.png";break;
+          case "*3":p.src="./puke/+3.png";break;
+          case "*4":p.src="./puke/+4.png";break;
+          case "*5":p.src="./puke/+5.png";break;
+          case "*6":p.src="./puke/+6.png";break;
+          case "*7":p.src="./puke/+7.png";break;
+          case "*8":p.src="./puke/+8.png";break;
+          case "*9":p.src="./puke/+9.png";break;
+          case "*10":p.src="./puke/+10.png";break;
+          case "*J":p.src="./puke/+j.png";break;
+          case "*Q":p.src="./puke/+q.png";break;
+          case "*K":p.src="./puke/+k.png";break;
+          case "*A":p.src="./puke/+1.png";break;
+        }
+    }
+    </script>
+</body>
+</html>
